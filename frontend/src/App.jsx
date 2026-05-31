@@ -1,4 +1,6 @@
 import React from "react";
+import aiesecLogo from "../../logo/aiesec.png";
+import mastercardLogo from "../../logo/mastercard.png";
 import initialFeatureHeatmap from "./assets/notebook/initial-feature-correlation-heatmap.png";
 import modelScoreDistributions from "./assets/notebook/model-score-distributions.png";
 import modelScoreSummary from "./assets/notebook/model-score-summary.png";
@@ -204,24 +206,21 @@ const removedHypotheses = [
   },
 ];
 
-function MastercardMark() {
+function PartnerLockup({ compact = false }) {
   return (
-    <span className="mc-mark" aria-label="Mastercard visual mark">
-      <span />
-      <span />
-    </span>
+    <div className={`partner-lockup${compact ? " partner-lockup-compact" : ""}`}>
+      <img className="mastercard-logo" src={mastercardLogo} alt="Mastercard" />
+      <span className="brand-divider" aria-hidden="true" />
+      <img className="aiesec-logo" src={aiesecLogo} alt="AIESEC" />
+    </div>
   );
 }
 
 function BrandBar() {
   return (
     <header className="brand-bar">
-      <div className="brand-lockup">
-        <MastercardMark />
-        <span className="divider" />
-        <strong>AIESEC</strong>
-      </div>
-      <span className="team-tag">Team BULTI / May 2026</span>
+      <PartnerLockup />
+      <span className="team-tag">Team BULT / May 2026</span>
     </header>
   );
 }
@@ -244,15 +243,21 @@ function Hero() {
   return (
     <section className="hero-shell">
       <div className="hero-frame">
+        <div className="hero-logo">
+          <PartnerLockup compact />
+        </div>
         <div className="hero-copy">
           <span className="eyebrow">Mastercard Data Quest</span>
-          <h1>Detecting hidden entrepreneurs from transaction behavior</h1>
-          <p>
-            A one-class machine learning pipeline that learns from business
-            cards, scores consumer cards, and surfaces people whose spending
-            patterns look like real commercial activity.
-          </p>
-          <MetricStrip />
+          <h1 className="hero-title">
+            <span>Detecting</span>
+            <span>Hidden</span>
+            <span>Entrepreneurs</span>
+          </h1>
+          <div className="hero-rule" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
       </div>
     </section>
@@ -430,9 +435,9 @@ function SubmissionTable() {
 function Footer() {
   return (
     <footer className="footer">
-      <MastercardMark />
+      <PartnerLockup compact />
       <span>Mastercard Data Quest case solution</span>
-      <span>Team BULTI / AIESEC / May 2026</span>
+      <span>Team BULT / AIESEC / May 2026</span>
     </footer>
   );
 }
@@ -440,7 +445,6 @@ function Footer() {
 export default function App() {
   return (
     <main>
-      <BrandBar />
       <Hero />
       <Pipeline />
       <HypothesisWork />
